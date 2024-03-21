@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- DI 객체 생성 -->
+	<!-- OracleDAO oracledao = new OracleDAO(); -->
+	<bean id="oracledao" class="com.ict.ex02.OracleDAO" />
+	<bean id="mariadbdao" class="com.ict.ex02.MariaDBDAO" />
+	
+	<!--Service service = new Service(new OracleDAO()); -->
+	<bean id="service" class="com.ict.ex02.Service" >
+		<!-- 생성자를 이용하면  ref : 위에서 만들어진 놈을 갖다 쓰기 위한 방법 -->
+		<!-- <constructor-arg ref="mariadbdao"></constructor-arg> -->
+			
+		<!-- setter -->
+		<!-- property : 그 클래스가 갖고있는 변수 (있는걸 갖다씀)-->
+		<property name="dao" ref="oracledao" />
+	</bean>
+</beans>
